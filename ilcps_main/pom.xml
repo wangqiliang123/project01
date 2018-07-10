@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.itcast</groupId>
+    <artifactId>ilcps_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>ilcps_main</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>ilcps_domain</module>
+  	<module>ilcps_dao</module>
+  	<module>ilcps_service</module>
+  	<module>ilcps_web</module>
+  	<!-- 让聚合项目包含utils工程，就可以解决运行main项目找不到utils工程的问题 -->
+  	<module>../ilcps_utils</module>
+  </modules>
+</project>

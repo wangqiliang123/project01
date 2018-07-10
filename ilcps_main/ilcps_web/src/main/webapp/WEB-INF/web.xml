@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+    <!--1. spring配置文件的加载的监听 器-->
+    <context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>classpath:applicationContext.xml</param-value>
+    </context-param> 
+    <listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener> 
+    
+    <!-- 2. 使用JPA时的懒加载机制 -->
+    <!-- Jpa java持久化Api，sun公司提供的统一接口。 -->
+    <!-- Jpa 中操作数据的对象就是EntityManager, 相当于hibernate中的session -->
+    <!-- Spring 整合 Jpa， 在Jpa中的OpenEntityManagerInViewFilter， 相当于之前的OpenSessionInViewFilter -->
+    <!-- 解决的问题： 事务是在service控制，调用service方法结束，事务提交连接关闭。但很多时候需要在jsp访问对象关联的对象的数据，需要查询数据库，所以会报错no session -->
+   <filter>
+      <filter-name>openEntityManagerInViewFilter</filter-name>
+      <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+      <filter-name>openEntityManagerInViewFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+    
+  
+   <!--3.struts2核心控制器-->
+     <filter>
+    	<filter-name>struts2</filter-name>
+    	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter> 
+    <filter-mapping>
+    	<filter-name>struts2</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping> 
+</web-app>
