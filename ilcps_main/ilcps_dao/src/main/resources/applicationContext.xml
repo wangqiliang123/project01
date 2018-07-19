@@ -16,9 +16,9 @@
 	<!-- 1.dataSource-->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
-		<property name="user" value="ilcps" />
-		<property name="password" value="orcl" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="user" value="scott" />
+		<property name="password" value="tiger" />
 	</bean>
 	
 	<!-- 2. Spring整合Jpa配置。 要求： 持久化对象要使用注解实现。 -->
@@ -74,7 +74,7 @@
 	<!-- 4.1默认值为false表示使用jdk接口代理； true 使用cglib子类代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="false" />
 	
-	<!-- 4.3 整合spring data jpa； 表示扫描的dao的接口，会自定义对该包下的所有的dao生成代理对象。-->
+	<!-- 4.3 整合spring data jpa； 表示扫描的dao的接口，会对自定义包下的所有的dao生成代理对象。-->
 	<jpa:repositories base-package="cn.itcast.dao"></jpa:repositories>
 	
 	
